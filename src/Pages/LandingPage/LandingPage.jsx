@@ -7,7 +7,7 @@ import {Container , MainContainer} from './styles'
 const App = () => {
   const tabs = [
     {
-      title: 'Create your own flight pass',
+      title: 'Create your own flight pass!!!!!!!!!!!!!!!!!!!',
       component: <FlightPass />,
     },
     {
