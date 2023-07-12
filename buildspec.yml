@@ -10,10 +10,11 @@ phases:
     commands:
       - docker build -t propass-ui .
       - docker tag propass-ui:latest 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:latest
+      - docker push 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:latest
   post_build:
     commands:
-      - docker push 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:latest
-      - printf '[{"name":"propass-ui","imageUri":"%s"}]' 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:latest > imagedefinitions.json
-      # - ./auto-increment-version.sh
-artifacts:
-  files: imagedefinitions.json
+      - echo Build completed on `date`
+      - echo Deploying new task definition $IMAGE_TAG to ECS cluster...
+      - echo ECS_CLUSTER_NAME - $ECS_SERVICE_NAME, ECS_SERVICE_NAME - $ECS_SERVICE_NAME
+      - aws ecs update-service --cluster $ECS_CLUSTER_NAME --service $ECS_SERVICE_NAME --task-definition $ECS_TASK_DEFINITION --force-new-deployment
+      - echo ECS service $ECS_SERVICE_NAME updated
