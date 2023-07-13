@@ -14,6 +14,6 @@ phases:
     commands:
       - docker push 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:latest
       - printf '[{"name":"propass-ui","imageUri":"%s"}]' 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:latest > imagedefinitions.json
-      - ./auto-increment-version.sh
+      # - ./auto-increment-version.sh
 artifacts:
   files: imagedefinitions.json
