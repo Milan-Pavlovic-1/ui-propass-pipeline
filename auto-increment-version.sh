@@ -9,7 +9,7 @@ echo "${VERSION}"
 VERSION_BITS=(`echo $VERSION | tr '.-' ' '`)
 
 
-#get the number parts and increase the last one by 1
+#get the number of parts and increase the last one by 1
 VNUM1=${VERSION_BITS[0]}
 #echo "${VNUM1}"
 
