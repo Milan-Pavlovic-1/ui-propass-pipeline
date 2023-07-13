@@ -58,7 +58,7 @@ echo "Updating $VERSION to $NEW_TAG"
 GIT_COMMIT=`git rev-parse HEAD`
 NEEDS_TAG=`git describe --contains $GIT_COMMIT`
 
-docker docker tag propass-ui:latest 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:$NEW_TAG
+docker tag propass-ui:latest 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:$NEW_TAG
 docker push 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:$NEW_TAG
 
 #only tag if no tag already (would be better if the git describe command above could have a silent option)
