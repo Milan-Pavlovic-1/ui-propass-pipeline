@@ -2,7 +2,7 @@
 # FROM node:latest as builder
 
 FROM public.ecr.aws/docker/library/node:latest as builder
-######################################################
+##########################################################
 # set working directory
 WORKDIR /app
 
