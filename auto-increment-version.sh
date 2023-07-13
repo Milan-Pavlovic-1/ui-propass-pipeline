@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#get highest tag number
+#get the highest tag number
 VERSION=`git describe --abbrev=0 --tags`
 
 echo "${VERSION}"
@@ -9,7 +9,7 @@ echo "${VERSION}"
 VERSION_BITS=(`echo $VERSION | tr '.-' ' '`)
 
 
-#get number parts and increase last one by 1
+#get the number parts and increase the last one by 1
 VNUM1=${VERSION_BITS[0]}
 #echo "${VNUM1}"
 
@@ -24,7 +24,7 @@ echo "${VNUM4}"
 
 
 
-# Check for #major or #minor in commit message and increment the relevant version number
+# Check for #major or #minor in the commit message and increment the relevant version number
 MAJOR=`git log --format=%B -n 1 HEAD | grep '#major'`
 MINOR=`git log --format=%B -n 1 HEAD | grep '#minor'`
 
@@ -45,7 +45,7 @@ echo "${VNUM4}"
 
 
 
-#create new tag
+#create a new tag
 NEW_TAG="$VNUM1.$VNUM2.$VNUM3-$VNUM4"
 echo "${NEW_TAG}"
 
@@ -54,16 +54,16 @@ echo "${NEW_TAG}"
 echo "Updating $VERSION to $NEW_TAG"
 
 
-#get current hash and see if it already has a tag
+#get the current hash and see if it already has a tag
 GIT_COMMIT=`git rev-parse HEAD`
 NEEDS_TAG=`git describe --contains $GIT_COMMIT`
 
-docker docker tag propass-ui:latest 906330555725.dkr.ecr.eu-central-1.amazonaws.com/propass-ui:$NEW_TAG
-docker push 906330555725.dkr.ecr.eu-central-1.amazonaws.com/propass-ui:$NEW_TAG
+docker docker tag propass-ui:latest 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:$NEW_TAG
+docker push 906330555725.dkr.ecr.us-east-1.amazonaws.com/propass-ui:$NEW_TAG
 
 #only tag if no tag already (would be better if the git describe command above could have a silent option)
 if [ -z "$NEEDS_TAG" ]; then
-    echo "Tagged with $NEW_TAG (Ignoring fatal:cannot describe - this means commit is untagged)"
+    echo "Tagged with $NEW_TAG (Ignoring fatal: cannot describe - this means commit is untagged)"
     git tag $NEW_TAG
     git push --tags
 else
