@@ -1,5 +1,6 @@
 # pull official base image from ECR Gallery
 # FROM node:latest as builder
+#
 
 FROM public.ecr.aws/docker/library/node:latest as builder
 ##########################################################
